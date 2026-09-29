@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Volant — Tout savoir sur le badminton</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-alt:#eef4f3;
+    --court:#175e73;
+    --court-dark:#0e3d4c;
+    --court-light:#4f93ab;
+    --cork:#d98e2b;
+    --cork-dark:#a86c1c;
+    --ink:#16212b;
+    --ink-soft:#4a5a63;
+    --line:#dbe3e2;
+    --white:#ffffff;
+    --font-display:'Big Shoulders Display','Arial Narrow',sans-serif;
+    --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e161b;
+      --bg-alt:#132229;
+      --court:#7fc7dd;
+      --court-dark:#bfe4ef;
+      --court-light:#5aa9c2;
+      --cork:#f0ad4e;
+      --cork-dark:#f7c67c;
+      --ink:#e9f0ef;
+      --ink-soft:#9fb0b5;
+      --line:#233942;
+      --white:#0e161b;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e161b;
+    --bg-alt:#132229;
+    --court:#7fc7dd;
+    --court-dark:#bfe4ef;
+    --court-light:#5aa9c2;
+    --cork:#f0ad4e;
+    --cork-dark:#f7c67c;
+    --ink:#e9f0ef;
+    --ink-soft:#9fb0b5;
+    --line:#233942;
+    --white:#0e161b;
+  }
+  html{scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));}
+  *{box-sizing:inherit;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    html{scroll-behavior:smooth;}
+  }
+  img,svg{max-width:100%;}
+  a{color:var(--court);}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .prose{max-width:62ch;}
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky;top:0;z-index:40;
+    padding-top:env(safe-area-inset-top,0px);
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    max-width:1120px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);}
+  .brand .icon{width:26px;height:26px;color:var(--cork);flex:none;}
+  .brand-text{font-family:var(--font-display);font-weight:800;font-size:1.35rem;letter-spacing:.2px;}
+  nav.links{display:flex;gap:2px;}
+  nav.links a{
+    color:var(--ink-soft);text-decoration:none;font-weight:600;font-size:.94rem;
+    padding:8px 12px;border-radius:3px;position:relative;
+  }
+  nav.links a:hover{color:var(--ink);}
+  nav.links a.active{color:var(--court);}
+  nav.links a.active::after{
+    content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;background:var(--cork);
+  }
+  .menu-btn{
+    display:none;background:none;border:1px solid var(--line);border-radius:4px;
+    width:40px;height:40px;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);
+  }
+  .menu-btn svg{width:20px;height:20px;}
+
+  @media (max-width: 760px){
+    nav.links{
+      position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;background:var(--bg);
+      border-bottom:1px solid var(--line);
+      padding:8px 24px 16px;gap:2px;
+      display:none;
+    }
+    nav.links.open{display:flex;}
+    .menu-btn{display:inline-flex;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:64px 0 56px;
+    display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    line-height:.98;
+    letter-spacing:.2px;
+    margin:0 0 20px;
+    color:var(--ink);
+  }
+  .hero p.lede{font-size:1.14rem;color:var(--ink-soft);margin:0 0 22px;max-width:52ch;}
+  .hero .fact{
+    display:inline-flex;align-items:baseline;gap:10px;
+    border-left:3px solid var(--cork);padding:6px 0 6px 14px;margin-top:6px;
+  }
+  .hero .fact strong{font-family:var(--font-display);font-size:1.9rem;color:var(--court);font-weight:800;}
+  .hero .fact span{color:var(--ink-soft);font-size:.92rem;}
+  .hero-art{display:flex;align-items:center;justify-content:center;}
+  .hero-art svg{width:100%;max-width:320px;height:auto;color:var(--court);}
+  @media (max-width: 820px){
+    .hero{grid-template-columns:1fr;padding-top:40px;}
+    .hero-art{order:-1;max-width:200px;margin:0 auto;}
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:64px 0;border-top:1px solid var(--line);}
+  section.alt{background:var(--bg-alt);}
+  .section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:36px;flex-wrap:wrap;}
+  .section-head .num{font-family:var(--font-display);font-weight:800;color:var(--line);font-size:2.2rem;}
+  h2{
+    font-family:var(--font-display);font-weight:800;
+    font-size:clamp(1.9rem,3.6vw,2.7rem);
+    margin:0;color:var(--ink);letter-spacing:.2px;
+  }
+  h3{font-family:var(--font-display);font-weight:700;font-size:1.35rem;margin:0 0 8px;color:var(--ink);}
+  p{margin:0 0 14px;color:var(--ink-soft);}
+  .intro{font-size:1.05rem;color:var(--ink-soft);max-width:66ch;margin-bottom:8px;}
+
+  /* ---------- HISTOIRE (timeline) ---------- */
+  .timeline{position:relative;max-width:760px;margin-top:8px;}
+  .timeline::before{
+    content:"";position:absolute;left:96px;top:6px;bottom:6px;width:1px;background:var(--line);
+  }
+  @media (max-width:600px){.timeline::before{left:14px;}}
+  .tl-item{position:relative;display:grid;grid-template-columns:82px 1fr;gap:24px;padding:0 0 30px;}
+  @media (max-width:600px){.tl-item{grid-template-columns:1fr;padding-left:34px;}}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-year{
+    font-family:var(--font-display);font-weight:800;color:var(--court);font-size:1rem;
+    text-align:right;padding-top:2px;
+  }
+  @media (max-width:600px){.tl-year{text-align:left;}}
+  .tl-dot{
+    position:absolute;left:92px;top:6px;width:9px;height:9px;border-radius:50%;
+    background:var(--cork);border:2px solid var(--bg);
+  }
+  @media (max-width:600px){.tl-dot{left:10px;}}
+  .tl-body p{margin:0;font-size:.98rem;}
+
+  /* ---------- MATERIEL ---------- */
+  .gear-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  @media (max-width:820px){.gear-grid{grid-template-columns:1fr;}}
+  .diagram-box{
+    border:1px solid var(--line);background:var(--bg);padding:20px;border-radius:4px;
+  }
+  .diagram-box svg{width:100%;height:auto;display:block;color:var(--court-dark);}
+  .diagram-cap{font-size:.85rem;color:var(--ink-soft);margin-top:10px;text-align:center;}
+  .fact-list{list-style:none;margin:0 0 20px;padding:0;}
+  .fact-list li{
+    padding:10px 0;border-bottom:1px solid var(--line);
+    display:grid;grid-template-columns:auto 1fr;gap:14px;font-size:.96rem;
+  }
+  .fact-list li:last-child{border-bottom:none;}
+  .fact-list b{color:var(--ink);font-weight:700;white-space:nowrap;}
+  .card-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px;}
+  @media (max-width:700px){.card-row{grid-template-columns:1fr;}}
+  .card{border-left:3px solid var(--court-light);padding-left:18px;}
+  .card p{font-size:.96rem;}
+
+  /* ---------- REGLES ---------- */
+  .rules-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  @media (max-width:900px){.rules-layout{grid-template-columns:1fr;}}
+  .rule-block{margin-bottom:26px;}
+  .rule-block h3{font-size:1.1rem;}
+  .rule-block p{font-size:.96rem;}
+  .legend{display:flex;flex-wrap:wrap;gap:14px 22px;margin-top:14px;font-size:.82rem;color:var(--ink-soft);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .legend i{width:16px;height:2px;background:var(--court);display:inline-block;}
+  .legend i.dash{background:repeating-linear-gradient(90deg,var(--ink-soft) 0 5px,transparent 5px 9px);}
+  .legend i.net{background:var(--cork);height:3px;}
+
+  /* ---------- COMPETITIONS ---------- */
+  .comp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media (max-width:760px){.comp-grid{grid-template-columns:1fr;}}
+  .comp-cell{background:var(--bg);padding:26px 28px;}
+  .comp-cell h3{display:flex;align-items:center;gap:10px;font-size:1.15rem;}
+  .comp-cell .tag{
+    font-family:var(--font-body);font-weight:700;font-size:.72rem;color:var(--cork-dark);
+    border:1px solid var(--cork);border-radius:20px;padding:2px 10px;white-space:nowrap;
+  }
+  .comp-cell p{font-size:.94rem;margin:0;}
+
+  /* ---------- FEDERATION ---------- */
+  .fed-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  @media (max-width:820px){.fed-grid{grid-template-columns:1fr;}}
+  .fed-card{background:var(--bg);border:1px solid var(--line);padding:30px;border-radius:4px;}
+  .fed-card h3{font-size:1.5rem;margin-bottom:4px;}
+  .fed-card .sub{color:var(--ink-soft);font-size:.85rem;margin-bottom:18px;}
+  .fed-stats{display:flex;gap:26px;margin:18px 0 20px;flex-wrap:wrap;}
+  .fed-stats div strong{display:block;font-family:var(--font-display);font-size:1.6rem;color:var(--court);font-weight:800;}
+  .fed-stats div span{font-size:.78rem;color:var(--ink-soft);}
+  .fed-card p{font-size:.95rem;}
+  .fed-card a.link{font-weight:600;font-size:.92rem;text-decoration:none;}
+  .fed-card a.link:hover{text-decoration:underline;}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line);padding:48px 0 calc(40px + env(safe-area-inset-bottom,0px));background:var(--bg-alt);}
+  footer .cols{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;}
+  @media (max-width:700px){footer .cols{grid-template-columns:1fr;}}
+  footer h4{font-family:var(--font-display);font-size:1.05rem;margin:0 0 10px;color:var(--ink);}
+  footer p{font-size:.92rem;}
+  footer ul{list-style:none;margin:0;padding:0;font-size:.9rem;}
+  footer li{margin-bottom:7px;}
+  footer li a{color:var(--ink-soft);text-decoration:none;}
+  footer li a:hover{color:var(--court);text-decoration:underline;}
+  .bottom-bar{
+    max-width:1120px;margin:32px auto 0;padding:18px 24px 0;border-top:1px solid var(--line);
+    font-size:.8rem;color:var(--ink-soft);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+  :focus-visible{outline:2px solid var(--court);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ic-shuttle" viewBox="0 0 48 48">
+      <path d="M24,33 L10,10 M24,33 L17,6 M24,33 L24,4 M24,33 L31,6 M24,33 L38,10"
+            fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M10,10 Q24,17 38,10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="24" cy="38" r="5.5" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site">
+  <div class="navbar">
+    <a href="#accueil" class="brand">
+      <svg class="icon" viewBox="0 0 48 48"><use href="#ic-shuttle"/></svg>
+      <span class="brand-text">Le Volant</span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="links" id="mainNav">
+      <a href="#accueil">Accueil</a>
+      <a href="#histoire">Histoire</a>
+      <a href="#materiel">Matériel</a>
+      <a href="#regles">Règles</a>
+      <a href="#competitions">Compétitions</a>
+      <a href="#federation">Fédération</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= HERO / ACCUEIL ================= -->
+  <section id="accueil" style="border-top:none;padding-top:0;">
+    <div class="wrap hero">
+      <div>
+        <h1>Le sport de raquette&nbsp;le plus rapide du monde.</h1>
+        <p class="lede">Un volant, deux camps, un filet à 1,55&nbsp;m&nbsp;: le badminton tient en une phrase et pourtant peu de sports sont aussi exigeants. Ce site rassemble, en français et à partir de sources vérifiées, son histoire, son matériel, ses règles, ses compétitions et ses fédérations.</p>
+        <div class="fact">
+          <strong>565&nbsp;km/h</strong>
+          <span>vitesse du smash le plus rapide jamais enregistrée (record Guinness, 2023, en conditions contrôlées)</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 200 260" aria-hidden="true">
+          <use href="#ic-shuttle" transform="translate(10,10) scale(3.6) rotate(-18 24 24)"/>
+          <g stroke="var(--cork)" stroke-width="2.2" stroke-linecap="round" opacity=".55">
+            <line x1="4" y1="205" x2="34" y2="185"/>
+            <line x1="0" y1="225" x2="26" y2="208"/>
+            <line x1="10" y1="243" x2="32" y2="228"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HISTOIRE ================= -->
+  <section id="histoire" class="alt">
+    <div class="wrap">
+      <div class="section-head"><span class="num">01</span><h2>Histoire</h2></div>
+      <p class="intro">Le badminton descend de jeux de volant très anciens, mais sa forme moderne — filet, raquette et règles écrites — s'est fixée en Angleterre à la fin du XIX<sup>e</sup>&nbsp;siècle, avant de devenir un sport olympique à part entière en 1992.</p>
+
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">Antiquité</div>
+          <div class="tl-body"><p>Des jeux de balle à plumes proches du badminton existent déjà depuis plus de deux mille ans&nbsp;: le <em>jianzi</em> en Chine, des variantes en Inde et en Grèce, puis le <em>hanetsuki</em> au Japon dès le XVI<sup>e</sup>&nbsp;siècle.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">XIX<sup>e</sup> s.</div>
+          <div class="tl-body"><p>En Inde, des officiers britanniques stationnés à Poona (aujourd'hui Pune) ajoutent un filet au jeu du « battledore and shuttlecock ». La variante prend le nom de <em>poona</em>.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1873</div>
+          <div class="tl-body"><p>De retour d'Inde, des officiers font découvrir le jeu au duc de Beaufort dans sa propriété de <strong>Badminton House</strong>, dans le Gloucestershire. Le jeu devient vite populaire sous ce nom.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1877</div>
+          <div class="tl-body"><p>Le Bath Badminton Club rédige les premières règles écrites de la discipline.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1893</div>
+          <div class="tl-body"><p>Création de la Badminton Association of England, qui harmonise les règles à l'échelle du pays.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1899</div>
+          <div class="tl-body"><p>Première édition des <strong>championnats All England</strong>, aujourd'hui encore le plus ancien tournoi de badminton toujours disputé.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1908</div>
+          <div class="tl-body"><p>Premier tournoi organisé en France, à Dieppe, le 27&nbsp;novembre.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1934</div>
+          <div class="tl-body"><p>Neuf fédérations, dont la France, fondent à Cheltenham l'<strong>International Badminton Federation</strong> (IBF), ancêtre de l'actuelle BWF.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1948-49</div>
+          <div class="tl-body"><p>Première <strong>Thomas Cup</strong>, championnat du monde par équipes masculines, dont le trophée avait été offert dès 1939.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1956-57</div>
+          <div class="tl-body"><p>Première <strong>Uber Cup</strong>, l'équivalent féminin de la Thomas Cup.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1977</div>
+          <div class="tl-body"><p>Lancement des premiers championnats du monde individuels.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1979</div>
+          <div class="tl-body"><p>(Re)création de la Fédération Française de Badminton sous sa forme actuelle.</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">1992</div>
+          <div class="tl-body"><p>Le badminton entre au programme officiel des <strong>Jeux Olympiques</strong>, à Barcelone, après deux apparitions en démonstration (1972, 1988).</p></div>
+        </div>
+        <div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-year">2006</div>
+          <div class="tl-body"><p>L'IBF devient la <strong>Badminton World Federation</strong> (BWF), avec son siège désormais à Kuala Lumpur.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MATERIEL ================= -->
+  <section id="materiel">
+    <div class="wrap">
+      <div class="section-head"><span class="num">02</span><h2>Matériel</h2></div>
+      <p class="intro">Le matériel paraît simple, mais chaque élément — raquette, volant, filet — répond à des dimensions et des poids précisément réglementés par la BWF, afin que le jeu reste rapide et équitable partout dans le monde.</p>
+
+      <div class="gear-grid">
+        <div class="diagram-box">
+          <svg viewBox="0 0 400 500" aria-hidden="true">
+            <ellipse cx="200" cy="118" rx="92" ry="98" fill="none" stroke="currentColor" stroke-width="6"/>
+            <g stroke="currentColor" stroke-width="1" opacity=".55">
+              <line x1="200" y1="24" x2="200" y2="212"/>
+              <line x1="155" y1="30" x2="155" y2="206"/>
+              <line x1="245" y1="30" x2="245" y2="206"/>
+              <line x1="120" y1="52" x2="120" y2="184"/>
+              <line x1="280" y1="52" x2="280" y2="184"/>
+              <line x1="112" y1="118" x2="288" y2="118"/>
+              <line x1="118" y1="80" x2="282" y2="80"/>
+              <line x1="118" y1="156" x2="282" y2="156"/>
+              <line x1="132" y1="50" x2="268" y2="50"/>
+              <line x1="132" y1="186" x2="268" y2="186"/>
+            </g>
+            <path d="M178,214 L222,214 L206,246 L194,246 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+            <rect x="190" y="246" width="20" height="172" fill="none" stroke="currentColor" stroke-width="5"/>
+            <rect x="176" y="418" width="48" height="94" rx="6" fill="none" stroke="currentColor" stroke-width="5"/>
+            <g stroke="currentColor" stroke-width="2" opacity=".5">
+              <line x1="176" y1="438" x2="224" y2="438"/>
+              <line x1="176" y1="458" x2="224" y2="458"/>
+              <line x1="176" y1="478" x2="224" y2="478"/>
+              <line x1="176" y1="498" x2="224" y2="498"/>
+            </g>
+            <line x1="300" y1="118" x2="335" y2="118" stroke="currentColor" stroke-width="1.5"/>
+            <text x="340" y="122" font-family="Inter, sans-serif" font-size="15" fill="currentColor">Tête &amp; cordage</text>
+            <line x1="228" y1="330" x2="335" y2="330" stroke="currentColor" stroke-width="1.5"/>
+            <text x="340" y="334" font-family="Inter, sans-serif" font-size="15" fill="currentColor">Tige</text>
+            <line x1="230" y1="460" x2="335" y2="460" stroke="currentColor" stroke-width="1.5"/>
+            <text x="340" y="464" font-family="Inter, sans-serif" font-size="15" fill="currentColor">Manche</text>
+          </svg>
+          <p class="diagram-cap">Anatomie d'une raquette — cadre max. 680&nbsp;mm, largeur max. 230&nbsp;mm</p>
+        </div>
+
+        <div>
+          <h3>La raquette</h3>
+          <p>Composée d'une tête cordée, d'une tige, d'une gorge (selon les modèles) et d'un manche. Autrefois en bois puis en aluminium, elle est aujourd'hui presque toujours en carbone ou en composite graphite, pour rester rigide tout en restant très légère (souvent moins de 90&nbsp;g).</p>
+          <h3 style="margin-top:26px;">Le volant</h3>
+          <p>Il pèse entre <strong>4,74 et 5,50&nbsp;g</strong>. Le volant à plumes naturelles (16 plumes d'oie ou de canard plantées dans un embout en liège) offre la trajectoire la plus régulière, mais reste fragile et réservé à la compétition. Le volant synthétique (nylon) est plus résistant et économique, adapté à l'entraînement et au loisir. Il existe aussi des volants hybrides, plumes sur base plastique.</p>
+          <h3 style="margin-top:26px;">Le filet</h3>
+          <ul class="fact-list">
+            <li><b>Hauteur aux poteaux</b><span>1,55&nbsp;m</span></li>
+            <li><b>Hauteur au centre</b><span>1,524&nbsp;m</span></li>
+            <li><b>Longueur</b><span>6,10&nbsp;m</span></li>
+            <li><b>Maille</b><span>cordelette sombre, bande blanche en partie haute</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card-row">
+        <div class="card">
+          <h3>Chaussures</h3>
+          <p>Le badminton multiplie les fentes, sauts et changements de direction brusques&nbsp;: des chaussures spécifiques, à semelle non marquante et bon maintien latéral, réduisent nettement le risque de blessure par rapport à des baskets classiques.</p>
+        </div>
+        <div class="card">
+          <h3>Tenue</h3>
+          <p>Une tenue de sport classique suffit&nbsp;: short ou jupe, t-shirt respirant. En club comme en compétition, le confort et la liberté de mouvement priment sur l'esthétique.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REGLES ================= -->
+  <section id="regles" class="alt">
+    <div class="wrap">
+      <div class="section-head"><span class="num">03</span><h2>Règles</h2></div>
+      <p class="intro">Les règles officielles sont fixées par la BWF. Voici l'essentiel pour suivre — ou commencer — une partie, en simple comme en double.</p>
+
+      <div class="rules-layout">
+        <div class="diagram-box">
+          <svg viewBox="0 0 760 430" aria-hidden="true">
+            <rect x="60" y="70" width="670" height="305" fill="none" stroke="var(--court-dark)" stroke-width="2.5"/>
+            <line x1="60" y1="93" x2="730" y2="93" stroke="var(--court-dark)" stroke-width="1.5"/>
+            <line x1="60" y1="352" x2="730" y2="352" stroke="var(--court-dark)" stroke-width="1.5"/>
+            <line x1="296" y1="70" x2="296" y2="375" stroke="var(--court)" stroke-width="1.5"/>
+            <line x1="494" y1="70" x2="494" y2="375" stroke="var(--court)" stroke-width="1.5"/>
+            <line x1="98" y1="70" x2="98" y2="375" stroke="var(--ink-soft)" stroke-width="1.5" stroke-dasharray="5 5"/>
+            <line x1="692" y1="70" x2="692" y2="375" stroke="var(--ink-soft)" stroke-width="1.5" stroke-dasharray="5 5"/>
+            <line x1="60" y1="222.5" x2="296" y2="222.5" stroke="var(--court)" stroke-width="1.5"/>
+            <line x1="494" y1="222.5" x2="730" y2="222.5" stroke="var(--court)" stroke-width="1.5"/>
+            <line x1="395" y1="66" x2="395" y2="379" stroke="var(--cork)" stroke-width="3.5"/>
+            <text x="395" y="55" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="var(--ink)">Filet</text>
+            <text x="395" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="var(--ink-soft)">1,98 m</text>
+            <text x="395" y="204" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="var(--ink-soft)">service court</text>
+            <line x1="60" y1="392" x2="730" y2="392" stroke="var(--ink)" stroke-width="1"/>
+            <line x1="60" y1="387" x2="60" y2="397" stroke="var(--ink)" stroke-width="1"/>
+            <line x1="730" y1="387" x2="730" y2="397" stroke="var(--ink)" stroke-width="1"/>
+            <text x="395" y="414" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="var(--ink)">13,40 m</text>
+            <line x1="40" y1="70" x2="40" y2="375" stroke="var(--ink)" stroke-width="1"/>
+            <line x1="35" y1="70" x2="45" y2="70" stroke="var(--ink)" stroke-width="1"/>
+            <line x1="35" y1="375" x2="45" y2="375" stroke="var(--ink)" stroke-width="1"/>
+            <text x="30" y="225" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="var(--ink)" transform="rotate(-90 30 225)">6,10 m (double)</text>
+            <text x="15" y="225" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="var(--ink-soft)" transform="rotate(-90 15 225)">5,18 m (simple)</text>
+          </svg>
+          <div class="legend">
+            <span><i></i> limite simple</span>
+            <span><i class="dash"></i> service long, double</span>
+            <span><i class="net"></i> filet</span>
+          </div>
+          <p class="diagram-cap">Vue de dessus du terrain (proportions réelles)</p>
+        </div>
+
+        <div>
+          <div class="rule-block">
+            <h3>Le score</h3>
+            <p>Chaque échange rapporte un point, quel que soit le camp qui servait (règle du « point à la volée »). Un set se joue en <strong>21 points</strong> avec 2 points d'écart minimum&nbsp;; à 20-20, le jeu continue jusqu'à cet écart, avec un plafond à <strong>30 points</strong> (29-29 → le point suivant est décisif). Un match se joue au meilleur des 3&nbsp;sets.</p>
+          </div>
+          <div class="rule-block">
+            <h3>Le service</h3>
+            <p>Il se fait toujours en diagonale, vers la zone de service adverse, et sous la taille. Le camp qui gagne l'échange marque le point et sert ensuite. En simple, le serveur change de côté selon la parité de son score&nbsp;; en double, chaque joueur a son propre tour de service.</p>
+          </div>
+          <div class="rule-block">
+            <h3>Fautes courantes</h3>
+            <p>Volant hors limites ou qui ne passe pas le filet, double contact ou volant touché par autre chose que le cordage, joueur ou raquette touchant le filet. Contrairement au tennis, <strong>aucun rebond n'est autorisé</strong>&nbsp;: le volant doit être renvoyé avant de toucher le sol.</p>
+          </div>
+          <div class="rule-block">
+            <h3>Les disciplines</h3>
+            <p>Simple messieurs, simple dames, double messieurs, double dames et double mixte — les cinq épreuves disputées dans toutes les grandes compétitions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COMPETITIONS ================= -->
+  <section id="competitions">
+    <div class="wrap">
+      <div class="section-head"><span class="num">04</span><h2>Compétitions</h2></div>
+      <p class="intro">Du circuit hebdomadaire aux Jeux Olympiques, le calendrier international du badminton s'organise autour de quelques rendez-vous majeurs.</p>
+    </div>
+    <div class="wrap" style="padding:0;max-width:1120px;">
+      <div class="comp-grid">
+        <div class="comp-cell">
+          <h3>Jeux Olympiques <span class="tag">tous les 4 ans</span></h3>
+          <p>Sport officiel depuis Barcelone 1992&nbsp;; le double mixte a rejoint le programme en 1996. Cinq médailles d'or sont attribuées à chaque édition.</p>
+        </div>
+        <div class="comp-cell">
+          <h3>Championnats du monde <span class="tag">annuel</span></h3>
+          <p>Épreuves individuelles disputées chaque année depuis 1977, sauf les années olympiques.</p>
+        </div>
+        <div class="comp-cell">
+          <h3>Thomas Cup &amp; Uber Cup <span class="tag">2 ans</span></h3>
+          <p>Championnats du monde par équipes, masculin (1948) et féminin (1956), disputés ensemble tous les deux ans, les années paires.</p>
+        </div>
+        <div class="comp-cell">
+          <h3>Sudirman Cup <span class="tag">2 ans</span></h3>
+          <p>Épreuve mixte par équipes créée en 1989, nommée en hommage à Dick Sudirman, fondateur de la fédération indonésienne. Disputée les années impaires.</p>
+        </div>
+        <div class="comp-cell">
+          <h3>Championnats d'Europe <span class="tag">annuel depuis 2017</span></h3>
+          <p>Créés en 1968, ils opposent les meilleurs joueurs et joueuses du continent.</p>
+        </div>
+        <div class="comp-cell">
+          <h3>BWF World Tour <span class="tag">circuit annuel</span></h3>
+          <p>Circuit international hiérarchisé (Super 1000, 750, 500…) réunissant les tournois les plus prestigieux, dont les Internationaux de France. L'All England, disputé sans interruption depuis 1899, en reste le tournoi le plus ancien et le plus prestigieux.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEDERATION ================= -->
+  <section id="federation" class="alt">
+    <div class="wrap">
+      <div class="section-head"><span class="num">05</span><h2>Fédérations</h2></div>
+      <p class="intro">Deux instances structurent le badminton&nbsp;: une fédération mondiale qui fixe les règles et organise les grandes compétitions internationales, et une fédération nationale qui développe la pratique sur le terrain.</p>
+
+      <div class="fed-grid">
+        <div class="fed-card">
+          <h3>BWF</h3>
+          <p class="sub">Badminton World Federation — instance mondiale</p>
+          <div class="fed-stats">
+            <div><strong>1934</strong><span>année de fondation</span></div>
+            <div><strong>200+</strong><span>fédérations membres</span></div>
+            <div><strong>5</strong><span>confédérations continentales</span></div>
+          </div>
+          <p>Fondée le 5&nbsp;juillet 1934 à Cheltenham (Angleterre) sous le nom d'International Badminton Federation, par neuf pays dont la France. Elle a fusionné avec la World Badminton Federation en 1981, avant d'être renommée Badminton World Federation en 2006. Son siège est installé à Kuala Lumpur depuis 2005. Elle fixe les règles du jeu à l'échelle mondiale et organise les grandes compétitions internationales.</p>
+          <a class="link" href="https://bwfbadminton.com" target="_blank" rel="noopener">bwfbadminton.com ↗</a>
+        </div>
+
+        <div class="fed-card">
+          <h3>FFBad</h3>
+          <p class="sub">Fédération Française de Badminton — instance nationale</p>
+          <div class="fed-stats">
+            <div><strong>1979</strong><span>forme actuelle</span></div>
+            <div><strong>225 000+</strong><span>licenciés</span></div>
+            <div><strong>2 000</strong><span>clubs affiliés</span></div>
+          </div>
+          <p>Une première fédération française avait vu le jour en 1930, avant d'être dissoute en 1941. La FFBad, sous sa forme actuelle, est créée en 1979 et a son siège à Saint-Ouen. Fédération olympique et paralympique déléguée par le ministère chargé des Sports, elle développe et organise la pratique du badminton dans toute la France, des clubs amateurs jusqu'au très haut niveau, via une vingtaine de ligues régionales et une centaine de comités départementaux.</p>
+          <a class="link" href="https://www.ffbad.org" target="_blank" rel="noopener">ffbad.org ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <h4>À propos de ce site</h4>
+      <p>« Le Volant » est un projet personnel, réalisé pour apprendre le développement web en partant d'une passion&nbsp;: le badminton. Ce n'est pas un site officiel. Pour les règles complètes et à jour, direction la BWF ou la FFBad.</p>
+    </div>
+    <div>
+      <h4>Sources consultées</h4>
+      <ul>
+        <li><a href="https://fr.wikipedia.org/wiki/Badminton" target="_blank" rel="noopener">Wikipédia — Badminton</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Badminton_World_Federation" target="_blank" rel="noopener">Wikipédia — Badminton World Federation</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/French_Badminton_Federation" target="_blank" rel="noopener">Wikipédia — French Badminton Federation</a></li>
+        <li><a href="https://www.ffbad.org" target="_blank" rel="noopener">ffbad.org — Fédération Française de Badminton</a></li>
+        <li><a href="https://bwfbadminton.com" target="_blank" rel="noopener">bwfbadminton.com — Badminton World Federation</a></li>
+        <li><a href="https://www.larousse.fr/encyclopedie/divers/badminton/25087" target="_blank" rel="noopener">Larousse — Badminton</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <span>Le Volant — projet personnel non officiel</span>
+    <span>Contenu vérifié à partir de sources publiques, septembre 2026</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var btn = document.getElementById('menuBtn');
+    var nav = document.getElementById('mainNav');
+    btn.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+      });
+    });
+
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+    var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+
+    if ('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            var id = '#' + entry.target.id;
+            links.forEach(function(a){
+              a.classList.toggle('active', a.getAttribute('href') === id);
+            });
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      sections.forEach(function(s){ obs.observe(s); });
+    }
+  })();
+</script>
+
+</body>
+</html>
